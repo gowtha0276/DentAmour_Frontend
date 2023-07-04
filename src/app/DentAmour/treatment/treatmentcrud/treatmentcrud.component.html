@@ -1,0 +1,41 @@
+<div mat-dialog-title>
+    <h2>Treatment Form
+    </h2>
+</div>
+<form [formGroup]="treatmentForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row" style="margin-right: 2rem;">
+            <mat-form-field appearance="outline">
+                <mat-label>Treatment Name</mat-label>
+                <input matInput type="text" placeholder="Ex. Scaling" formControlName="name">
+            </mat-form-field>
+        </div>
+
+        <div class="row" style="margin-bottom: 1rem;">
+            <mat-radio-group aria-label="Select an option" formControlName="textInput">
+                <mat-label>Is Text Area needed </mat-label>
+                <mat-radio-button value="Yes" style="margin-right: 10px;">Yes</mat-radio-button>
+                <mat-radio-button value="No">No</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div class="row" style="margin-right: 2rem;">
+            <mat-form-field appearance="outline">
+                <mat-label>Step Names</mat-label>
+                <input matInput type="text" placeholder="Ex. Step Names" formControlName="stepTreatment">
+            </mat-form-field>
+        </div>
+
+        <div class="row" style="margin-right: 2rem;">
+            <mat-form-field appearance="outline">
+                <mat-label>MultipleStep Name</mat-label>
+                <input matInput type="text" placeholder="Ex. Step Names" formControlName="multipleStep">
+            </mat-form-field>
+        </div>
+
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Save'}}</button>
+    </div>
+</form>

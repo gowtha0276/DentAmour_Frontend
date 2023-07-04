@@ -1,0 +1,58 @@
+<div mat-dialog-title>
+    <h2>Patient Form
+    </h2>
+</div>
+<form [formGroup]="patForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row" style="margin-right: 2rem;">
+            <mat-form-field appearance="outline">
+                <mat-label>Full Name</mat-label>
+                <input matInput type="text" placeholder="Ex. Shaik" formControlName="name">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" placeholder="Ex. test@gmail.com" formControlName="mail">
+                </mat-form-field>
+            </div>
+            <div class="col" style="margin-left: 32px;">
+                <mat-form-field appearance="outline" style="width: 86%;">
+                    <mat-label>Date of birth</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>Occupation</mat-label>
+                    <input matInput placeholder="Ex. Doctor" formControlName="occupation">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone</mat-label>
+                    <input matInput placeholder="Ex. 9094697446" formControlName="phone">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row" style="margin-right: 2rem;">
+            <mat-form-field appearance="outline">
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="Ex. Chennai" formControlName="address">
+            </mat-form-field>
+        </div>
+        
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Save'}}</button>
+    </div>
+</form>
