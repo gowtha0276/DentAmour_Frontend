@@ -12,24 +12,29 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { ErrorStateMatcher, MatNativeDateModule, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import {MatListModule} from '@angular/material/list';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatDividerModule} from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PatientcrudComponent } from './DentAmour/patient/patientcrud/patientcrud.component';
 import { DoctorcrudComponent } from './DentAmour/doctor/doctorcrud/doctorcrud.component';
 import { TreatmentComponent } from './DentAmour/treatment/treatment.component';
 import { TreatmentcrudComponent } from './DentAmour/treatment/treatmentcrud/treatmentcrud.component';
-//import { TreatmentcrudComponent } from './DentAmour/treatment/treatmentcrud/treatmentcrud.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,10 +66,16 @@ import { TreatmentcrudComponent } from './DentAmour/treatment/treatmentcrud/trea
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
+    MatCardModule,
     MatSortModule,
     MatSnackBarModule,
+    MatExpansionModule,
+    MatDividerModule,
+    MatListModule,
+    MatGridListModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

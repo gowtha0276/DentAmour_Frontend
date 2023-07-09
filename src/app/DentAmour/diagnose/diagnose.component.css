@@ -1,0 +1,19 @@
+.main-body {
+    padding-top: 20px;
+    margin: 0 auto;
+    max-width: 1348px;
+  }
+
+  .example-card {
+    max-width: 100px;
+    margin-left: 30%;
+  }
+
+  mat-grid-tile {
+    background: lightblue;
+  }
+
+  .treatmentSection{
+    max-width: 50%;
+    margin-left: auto;
+  }

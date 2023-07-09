@@ -9,7 +9,7 @@ export class TreatmentService {
   constructor(private _http: HttpClient) {}
 
   getTreatment(): Observable<any> {
-    return this._http.get('http://localhost:8080/api/treatment/get');
+    return this._http.get('http://localhost:8080/api/treatment/getAllTreatments');
   }
 
   addTreatment(data:any): Observable<any> {

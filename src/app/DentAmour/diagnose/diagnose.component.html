@@ -1,1 +1,118 @@
-<p>diagnose works!</p>
+<div class="main-body" style="text-align: center;" >
+    <div>
+        <h2>Find Patient</h2>
+        <label id="example-radio-group-label">Find Patient By:  </label>
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+            [(ngModel)]="patientProperty">
+            <mat-radio-button class="example-radio-button" value="phone">
+                phone
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button" value="RegistrationId">
+                registrationId
+            </mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <div>
+        <mat-form-field class="example-full-width" *ngIf="patientProperty==='phone'">
+            <mat-label>Phone</mat-label>
+            <input type="text" matInput [formControl]="patientInput" [errorStateMatcher]="matcher"
+                placeholder="Ex. 9839722322">
+            <mat-error *ngIf="patientInput.hasError('email') && !patientInput.hasError('required')">
+                Please enter a valid phone number
+            </mat-error>
+            <mat-error *ngIf="patientInput.hasError('required')">
+                Phone is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" *ngIf="patientProperty==='RegistrationId'">
+            <mat-label>RegistrationId</mat-label>
+            <input type="text" matInput [formControl]="patientInput" [errorStateMatcher]="matcher"
+                placeholder="Ex. abc@gmail.com">
+            <mat-error *ngIf="patientInput.hasError('required')">
+                RegistrationId is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="findPatient()" *ngIf="patientProperty!==''">Search</button>
+    </div>
+
+      <mat-grid-list cols="3" rowHeight="7:1" *ngIf="patient!=undefined">
+        <mat-grid-tile>
+                <mat-card-header>
+                  <mat-card-title>Name: {{patient.name}}</mat-card-title>
+                </mat-card-header>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card-header>
+                <mat-card-title>Reg Id: {{patient.registrationID}}</mat-card-title>
+              </mat-card-header>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card-header>
+                <mat-card-title>Phone No: {{patient.phone}}</mat-card-title>
+              </mat-card-header>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card-header>
+                <mat-card-title>Address: {{patient.address}}</mat-card-title>
+              </mat-card-header>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card-header>
+                <mat-card-title>Occupation: {{patient.occupation}}</mat-card-title>
+              </mat-card-header>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card-header>
+                <mat-card-title>Age: {{patient.age}} years</mat-card-title>
+              </mat-card-header>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <br>
+      <mat-divider></mat-divider>
+
+      <!-- select primary doctor -->
+    <div *ngIf="doctors!=undefined && patient!=undefined">
+        <h2>Primary Doctor</h2>
+        <mat-form-field>
+            <mat-label>Select primary doctor</mat-label>
+            <mat-select [(value)]="patientDiagnosis.primaryDoctor" >
+              <mat-option [value]="d" *ngFor="let d of doctors"> {{d.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Primary Doctor's comment</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..." [(ngModel)]="patientDiagnosis.primaryDoctorComments"></textarea>
+          </mat-form-field>
+    </div>
+
+    <!-- select secondary doctor -->
+    <div *ngIf="doctors!=undefined && patient!=undefined">
+        <h2>Secondary Doctor</h2>
+        <mat-form-field>
+            <mat-label>Select secondary doctor</mat-label>
+            <mat-select [(value)]="patientDiagnosis.secondaryDoctor" >
+              <mat-option [value]="d" *ngFor="let d of doctors"> {{d.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Secondary Doctor's comment</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..."  [(ngModel)]="patientDiagnosis.secondaryDoctorComments"></textarea>
+          </mat-form-field>
+    </div>
+
+    <!-- select treatments -->
+      <div *ngIf="patient!=undefined" class="treatmentSection">
+        <h2>Add Treatments</h2>
+        <mat-selection-list #selectedTreaments>
+            <mat-list-option *ngFor="let t of treatments" [value]="t">
+              {{t.name}}
+            </mat-list-option>
+          </mat-selection-list>
+        <br>
+        <button mat-raised-button color="primary" (click)="AddTreamentsToPatient(selectedTreaments.selectedOptions.selected)" >Submit</button>
+    </div>
+      
+</div>
